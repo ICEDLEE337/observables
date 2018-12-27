@@ -10,11 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "rx-node": "^1.0.2"
+    "rxjs": "^6.3.3"
   },
   "devDependencies": {
     "@types/node": "^10.12.18",
-    "@types/rx-node": "0.0.5",
     "semistandard": "^13.0.1",
     "typescript": "^3.2.2"
   }
