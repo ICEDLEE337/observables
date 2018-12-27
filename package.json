@@ -4,8 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "semistandard --fix",
+    "start": "node index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "rx-node": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "@types/rx-node": "0.0.5",
+    "semistandard": "^13.0.1",
+    "typescript": "^3.2.2"
+  }
 }
