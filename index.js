@@ -1,6 +1,4 @@
-const exampleOne = require('./ping-google');
-// const exampleTwo = require('./git-grep');
+// const example = require('./ping-google');
+const example = require('./git-grep');
 
-exampleOne();
-
-// exampleTwo();
+example();

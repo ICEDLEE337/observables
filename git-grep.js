@@ -1,14 +1,16 @@
-const { spawn } = require('child_process');
-const { timer, Observable } = require('rxjs');
-const { map, takeUntil } = require('rxjs/operators');
+const { map } = require('rxjs/operators');
+const bash = require('./rx-bash');
 
-module.exports = function () {
-  const proc = spawn('sh', ['-c', 'ping www.google.com']);
+module.exports = function (termParam) {
+  const term = termParam || 'emit';
+  const proc = bash(`git grep ${term}`);
 
-  const ping = new Observable(o => {
-    proc.stdout.on('data', data => o.next(data));
-    proc.stdout.on('close', () => o.complete());
-  });
-  ping.pipe(map(x => x.toString()), takeUntil(timer(5000)))
-    .subscribe(x => console.log(x), undefined, () => proc.kill());
+  proc['stdoutStream']
+    .pipe(map(x => x.toString()))
+    .pipe(map(highlightTerm.bind(null, term)))
+    .subscribe(x => console.log(x));
 };
+
+function highlightTerm (term, match) {
+  return match.replace(new RegExp(term + '?', 'g'), `__________${term}__________`);
+}
