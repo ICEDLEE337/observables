@@ -1,5 +1,5 @@
-const {map} = require('rxjs/operators');
-const {merge} = require('rxjs');
+const { map } = require('rxjs/operators');
+const { merge } = require('rxjs');
 const bash = require('./rx-bash');
 
 module.exports = function () {
