@@ -1,16 +1,15 @@
 const {map} = require('rxjs/operators');
+const {merge} = require('rxjs');
 const bash = require('./rx-bash');
 
 module.exports = function () {
-  searchMany().forEach(o => o.subscribe(console.log.bind(console)));
+  merge(...searchMany())
+    .subscribe(console.log.bind(console));
 };
 
 function searchMany (termParams = ['emit', 'log', 'map']) {
-  const observables = termParams
-    .map(termParam =>
-      search(termParam)
-    );
-  return observables;
+  return termParams
+    .map(search);
 }
 
 function search (termParam) {
